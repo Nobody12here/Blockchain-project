@@ -49,7 +49,7 @@ export const CampaignDetail = ({
             creatorAddress={address}
             deadline={deadline}
           />
-          <CampaignStats campaignAddress={campaignAddress} />
+          <CampaignStats ownerAddress={address} campaignAddress={campaignAddress} />
         </VStack>
 
         {/* Right Column */}
