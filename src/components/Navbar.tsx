@@ -1,6 +1,6 @@
-import { Button, Flex, Image, useColorMode } from "@chakra-ui/react";
+import { Button, Flex, Heading, useColorMode } from "@chakra-ui/react";
 import { Moon, Sun } from "lucide-react";
-import { Link } from "@chakra-ui/react"
+import { Link } from "@chakra-ui/react";
 import { injected, useAccount, useConnect, useDisconnect } from "wagmi";
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -16,13 +16,21 @@ export const Navbar = () => {
       bg={colorMode === "light" ? "white" : "gray.800"}
       boxShadow="sm"
     >
-      <Flex align="center" gap="2">
-        <Image src="/logo.svg" alt="BetterFund" height="32px" />
+      <Flex flex={{ base: 1 }} justify="start" ml={{ base: -2, md: 0 }}>
+        <Heading
+          textAlign="left"
+          fontFamily={"heading"}
+          color={colorMode === "light" ? "teal.800" : "white"}
+          as="h2"
+          size="lg"
+        >
+          Tokenized Crowdfunding
+        </Heading>
       </Flex>
 
       <Flex gap="4" align="center">
         <Link href="/create-campaign">
-        <Button variant="ghost">Create Campaign</Button>
+          <Button variant="ghost">Create Campaign</Button>
         </Link>
         <Button variant="ghost">How It Works</Button>
         {status === "disconnected" && (
