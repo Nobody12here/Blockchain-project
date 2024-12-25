@@ -26,7 +26,7 @@ export const Navbar = () => {
           as="h2"
           size="lg"
         >
-          Tokenized Crowdfunding
+          Crowdfunding
         </Heading>
       </Flex>
 
@@ -46,7 +46,7 @@ export const Navbar = () => {
           </Button>
         ) : (
           <>
-            <Button variant="ghost">{address}</Button>
+            <Button variant="ghost">{address?.slice(0,10).concat("...")}</Button>
             <Button
               colorScheme="teal"
               onClick={() => {

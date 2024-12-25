@@ -1,19 +1,18 @@
-import { Box, Container, VStack, Link, Icon } from "@chakra-ui/react";
-import { ExternalLink } from "lucide-react";
+import { Box, Container, VStack} from "@chakra-ui/react";
 import { CampaignHeader } from "./CampaignHeader";
 import { CampaignDescription } from "./CampaignDescription";
 import { CampaignContribution } from "./CampaignContribution";
 import { CampaignStats } from "./CampaignStats";
-
+import { BackButton } from "../navigation/BackButton";
 interface CampaignDetailProps {
   title: string;
   address: string;
   minimumAmount: string;
   deadline: string;
   description: string;
-  raised:string;
-  target:string;
-  campaignAddress:string;
+  raised: string;
+  target: string;
+  campaignAddress: string;
 }
 
 export const CampaignDetail = ({
@@ -29,10 +28,7 @@ export const CampaignDetail = ({
   return (
     <Container maxW="container.xl" py={8}>
       <Box mb={4}>
-        <Link href="#" color="teal.500" fontSize="sm">
-          <Icon as={ExternalLink} mr={1} />
-          View on Etherscan
-        </Link>
+        <BackButton />
       </Box>
 
       <Box
@@ -49,11 +45,18 @@ export const CampaignDetail = ({
             creatorAddress={address}
             deadline={deadline}
           />
-          <CampaignStats ownerAddress={address} campaignAddress={campaignAddress} />
+          <CampaignStats
+            ownerAddress={address}
+            campaignAddress={campaignAddress}
+          />
         </VStack>
 
         {/* Right Column */}
-        <CampaignContribution campaignAddress={campaignAddress} raised={raised} target={target} />
+        <CampaignContribution
+          campaignAddress={campaignAddress}
+          raised={raised}
+          target={target}
+        />
       </Box>
     </Container>
   );
