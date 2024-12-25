@@ -1,12 +1,14 @@
 import { Button, Flex, Heading, useColorMode } from "@chakra-ui/react";
 import { Moon, Sun } from "lucide-react";
 import { Link } from "@chakra-ui/react";
-import { injected, useAccount, useConnect, useDisconnect } from "wagmi";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
+
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { connect } = useConnect();
+  const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
-  const { status } = useAccount();
+  const { isConnected, status,address } = useAccount();
+  console.log(isConnected,status,address)
   return (
     <Flex
       as="nav"
@@ -33,27 +35,27 @@ export const Navbar = () => {
           <Button variant="ghost">Create Campaign</Button>
         </Link>
         <Button variant="ghost">How It Works</Button>
-        {status === "disconnected" && (
+        {!isConnected ? (
           <Button
             colorScheme="teal"
             onClick={() => {
-              connect({
-                connector: injected(),
-              });
+              connect({ connector: connectors[0] });
             }}
           >
             Connect Wallet
           </Button>
-        )}
-        {status === "connected" && (
-          <Button
-            colorScheme="teal"
-            onClick={() => {
-              disconnect();
-            }}
-          >
-            Disconnect Wallet
-          </Button>
+        ) : (
+          <>
+            <Button variant="ghost">{address}</Button>
+            <Button
+              colorScheme="teal"
+              onClick={() => {
+                disconnect();
+              }}
+            >
+              Disconnect Wallet
+            </Button>
+          </>
         )}
         <Button onClick={toggleColorMode} variant="ghost">
           {colorMode === "light" ? <Moon size={20} /> : <Sun size={20} />}

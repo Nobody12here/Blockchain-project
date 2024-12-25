@@ -13,7 +13,7 @@ export const Footer = () => {
         gap={4}
       >
         <Text>
-          Made while 💖 by Muhammad Auzair, Sidra Ishfaq & Aiza Tahir
+          Made with 💖 by Muhammad Auzair, Sidra Ishfaq & Aiza Tahir
         </Text>
         <Flex gap={4}>
           <Link href="#"><Globe size={20} /></Link>
