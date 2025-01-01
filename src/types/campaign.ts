@@ -6,3 +6,8 @@ export interface Campaign {
   imageUrl: string;
   targetAmount: string;
 }
+export interface Contributor{
+  contributor: string;
+    amount: string;
+    timestamp: string;
+}

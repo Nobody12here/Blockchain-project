@@ -76,7 +76,7 @@ export const CampaignForm = () => {
                 value={formData.minimumContribution}
                 onChange={handleChange}
                 type="number"
-                step="0.001"
+                step="0.0000000000000001"
                 min="0"
               />
               <InputRightAddon>ETH</InputRightAddon>

@@ -110,7 +110,7 @@ export const CampaignContribution = ({ raised, target, campaignAddress }: Campai
               pl={10}
               placeholder="0.00"
               type="number"
-              step="0.01"
+              step="0.0000000001"
               min="0"
               value={contributionAmount}
               onChange={(e) => setContributionAmount(e.target.value)}

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { CampaignFactory, CampaignFactoryAddress } from "../ABI/CampaignFactory";
 import { readContract } from "@wagmi/core";
 import { config } from "../config";
-import { Campaign } from "../ABI/Campaign";
+import { Campaign, } from "../ABI/Campaign";
 import { Address } from "viem";
 import { useParams } from "react-router-dom";
 
@@ -18,6 +18,7 @@ export const CampaignDetailPage = () => {
     address: CampaignFactoryAddress,
     functionName: "getDeployedCampaigns",
   });
+  
   useEffect(() => {
     const fetchCampaignSummary = async () => {
       if (CampaignsAddresses && CampaignsAddresses.length > 0) {

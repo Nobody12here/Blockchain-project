@@ -1,20 +1,37 @@
-import { Button, VStack } from "@chakra-ui/react";
-import { useWriteContract } from "wagmi";
+import { Box, Button, Heading, VStack } from "@chakra-ui/react";
+import { useReadContract, useWriteContract } from "wagmi";
 import { useToast } from "@chakra-ui/react";
 import { Campaign } from "../../ABI/Campaign";
-import { Address } from "viem";
 import { useAccount } from "wagmi";
+import { Address } from "viem";
+import { ContributorsTable } from "./ContributorsTable";
+import { useEffect, useState } from "react";
+import { Contributor } from "../../types/campaign";
 
 interface CampaignStatsProps {
   campaignAddress: string;
   ownerAddress: string;
 }
 
-export const CampaignStats = ({ campaignAddress, ownerAddress }: CampaignStatsProps) => {
+export const CampaignStats = ({
+  campaignAddress,
+  ownerAddress,
+}: CampaignStatsProps) => {
+  const [Contributions, setContributions] = useState<Contributor[]>([]);
   const { writeContractAsync } = useWriteContract();
   const { address } = useAccount();
   const toast = useToast();
-
+  const result = useReadContract({
+    abi: Campaign,
+    address: campaignAddress as Address,
+    functionName: "getContributions",
+  });
+  console.log("Contributions = ",Contributions)
+  useEffect(() => {
+    if (result.data) {
+      setContributions(result.data as Contributor[]);
+    }
+  });
   const handleSubmit = async () => {
     const response = writeContractAsync({
       abi: Campaign,
@@ -32,11 +49,17 @@ export const CampaignStats = ({ campaignAddress, ownerAddress }: CampaignStatsPr
       loading: { title: "Withdrawing...", description: "Please wait" },
     });
   };
-
+ 
   const isOwner = address?.toLowerCase() === ownerAddress.toLowerCase();
 
   return (
     <VStack align="stretch" spacing={4}>
+      <Box>
+        <Heading size="md" mb={4}>
+          Recent Contributors
+        </Heading>
+        <ContributorsTable contributors={Contributions} />
+      </Box>
       <Button
         colorScheme="teal"
         size="lg"

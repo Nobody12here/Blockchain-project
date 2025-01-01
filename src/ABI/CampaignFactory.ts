@@ -70,4 +70,4 @@ export const CampaignFactory = [
 		"type": "function"
 	}
 ]
-export const CampaignFactoryAddress = "0xF3A70Ca50f21882CEfaCA7224382a3eb8E705F50";
+export const CampaignFactoryAddress = "0x9A57AE510717CcB77A0AFab5186df0DA34C0A77F";
