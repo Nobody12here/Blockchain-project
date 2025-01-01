@@ -48,7 +48,7 @@ export const ContributorsTable = ({ contributors }: ContributorsTableProps) => {
               <Td>
                 <Tooltip label={contributor.contributor}>
                   <Link
-                    href={`https://etherscan.io/address/${contributor.contributor}`}
+                    href={`https://holesky.etherscan.io/address/${contributor.contributor}`}
                     isExternal
                     display="inline-flex"
                     alignItems="center"
